@@ -1,0 +1,125 @@
+.container {
+  margin: 0 5rem;
+  max-width: 1100px; }
+
+.btn-primary {
+  color: #ebebeb;
+  border-radius: 1rem;
+  background-color: #3f758d;
+  padding: 0.7rem; }
+
+a {
+  text-decoration: none; }
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: "Open Sans", sans-serif; }
+
+img {
+  width: 100%; }
+
+section#landing {
+  position: relative;
+  height: 100vh;
+  background: url("../img/finance-unicorn.jpg") no-repeat center center/cover; }
+  section#landing .header-container {
+    margin: 0 5rem;
+    padding-top: 5rem; }
+    section#landing .header-container .header-main {
+      color: #eddbae;
+      font-size: 3rem;
+      font-weight: bolder; }
+    section#landing .header-container .header-secondary {
+      color: #ebebeb;
+      margin: 2rem 0.4rem; }
+
+.btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 15rem 5rem; }
+  .btn-container .login {
+    margin-left: 1rem; }
+  .btn-container .register {
+    margin-right: 1rem; }
+
+.blue-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 83vh;
+  width: 40vw;
+  border-bottom-right-radius: 15rem;
+  background-color: #3f758d; }
+
+#background-gold {
+  width: 100vw;
+  height: 100vh;
+  background-color: #eddbae;
+  position: relative; }
+
+.register-container {
+  padding-top: 5rem;
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 3fr;
+      grid-template-columns: 2fr 3fr; }
+  .register-container .main-text-container {
+    font-size: 2.5rem;
+    color: #ebebeb; }
+  .register-container .form-container-register .form-group-register {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 2rem; }
+    .register-container .form-container-register .form-group-register input[type="text"],
+    .register-container .form-container-register .form-group-register input[type="password"],
+    .register-container .form-container-register .form-group-register input[type="email"] {
+      font-size: 1.4rem;
+      padding: 0.3rem;
+      border-radius: 0.4rem;
+      border: none; }
+    .register-container .form-container-register .form-group-register label {
+      margin-bottom: 0.5rem; }
+  .register-container .form-container-register .btn-primary-submit {
+    color: #ebebeb;
+    border-radius: 1rem;
+    background-color: #3f758d;
+    padding: 0.7rem 3rem;
+    margin: 0 6rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold; }
+
+@media (max-width: 700px) {
+  .container {
+    margin: 0 1rem;
+    max-width: 1100px; }
+  #background-gold {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content; }
+  .register-container {
+    display: block; }
+    .register-container .main-text-container {
+      font-size: 1.5rem;
+      color: #ebebeb; }
+    .register-container .form-container-register .btn-primary-submit {
+      margin: 0; } }

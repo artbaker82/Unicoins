@@ -1,0 +1,20 @@
+{
+  "name": "unicoins",
+  "version": "1.0.0",
+  "description": "Node and Express server for Unicoins app",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Arthur Baker",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.11"
+  }
+}

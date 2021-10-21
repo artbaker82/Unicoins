@@ -1,0 +1,118 @@
+@import "config";
+@import "utilities";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  //border: 1px solid black;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+img {
+  width: 100%;
+}
+
+//Landing
+
+section#landing {
+  position: relative;
+  height: 100vh;
+  background: url("../img/finance-unicorn.jpg") no-repeat center center/cover;
+
+  .header-container {
+    margin: 0 5rem;
+    padding-top: 5rem;
+
+    .header-main {
+      color: $color-secondary-gold;
+      font-size: 3rem;
+      font-weight: bolder;
+    }
+    .header-secondary {
+      color: $text-light;
+      margin: 2rem 0.4rem;
+    }
+  }
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 15rem 5rem;
+
+  .login {
+    margin-left: 1rem;
+  }
+  .register {
+    margin-right: 1rem;
+  }
+}
+
+//Register Page
+
+.blue-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 83vh;
+  width: 40vw;
+  border-bottom-right-radius: 15rem;
+  background-color: $color-secondary-blue;
+}
+
+#background-gold {
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-secondary-gold;
+  position: relative;
+}
+
+.register-container {
+  padding-top: 5rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+
+  .main-text-container {
+    font-size: 2.5rem;
+    color: $text-light;
+  }
+
+  .form-container-register {
+    .form-group-register {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      input[type="text"],
+      input[type="password"],
+      input[type="email"] {
+        font-size: 1.4rem;
+        padding: 0.3rem;
+        border-radius: 0.4rem;
+        border: none;
+      }
+
+      label {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .btn-primary-submit {
+      color: $text-light;
+      border-radius: 1rem;
+      background-color: $color-secondary-blue;
+      padding: 0.7rem 3rem;
+      margin: 0 6rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+}
+
+@import "mobile";

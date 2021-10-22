@@ -1,10 +1,9 @@
 //todo
-//set up express router
-//set up database
+
 //create user schema
 //set up authentication endpoints
+
 import express from "express";
-import mongoose from "mongoose";
 import { connectDB } from "./config/db.js";
 
 const app = express();

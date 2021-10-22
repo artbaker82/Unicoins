@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.register-item {
+  @apply my-4 p-2 w-full rounded lg:w-2/3;
+}

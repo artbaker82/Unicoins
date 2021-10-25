@@ -24,6 +24,11 @@ module.exports = {
         DEFAULT: "#fff",
       },
     },
+    extend: {
+      backgroundImage: {
+        unicorn: "url('../img/finance-unicorn.jpg')",
+      },
+    },
   },
   variants: {
     extend: {},

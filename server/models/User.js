@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+const categorySchema = new mongoose.Schema({ type: String });
+
 const UserSchema = new mongoose.Schema(
   {
     name: {
@@ -18,12 +20,11 @@ const UserSchema = new mongoose.Schema(
     },
     expenses: [
       {
-        expense: {
-          type: Schema.Types.ObjectId,
-          ref: "expense",
-        },
+        type: Schema.Types.ObjectId,
+        ref: "users",
       },
     ],
+    categories: [],
   },
   {
     timestamps: true,

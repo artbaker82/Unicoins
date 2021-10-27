@@ -19,6 +19,9 @@ const ExpenseSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "users",
   },
+  description: {
+    type: String,
+  },
 });
 
 export default mongoose.model("Expense", ExpenseSchema);

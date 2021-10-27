@@ -54,7 +54,19 @@ export const register = async (req, res) => {
   }
 };
 
-export const createCategory = async (req, res) => {};
+export const createCategory = async (req, res) => {
+  const category = req.body;
+  console.log(category);
+  try {
+    const user = await User.findOne({ user: req.user.id });
+    user.categories.push(category);
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
 
 //enter a new expense
 export const createExpense = async (req, res) => {
@@ -63,6 +75,7 @@ export const createExpense = async (req, res) => {
       category: req.body.category,
       amount: req.body.amount,
       user: req.user.id,
+      description: req.body.description,
     });
 
     const expense = await newExpense.save();
@@ -73,13 +86,19 @@ export const createExpense = async (req, res) => {
   }
 };
 
+//get expenses by user
 export const getUserExpenses = async (req, res) => {
   try {
+    //query database by userId (available in req.user.id from auth middleware)
     const expenses = await Expense.find({ user: req.user.id });
-
     res.json(expenses);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
+};
+
+export const getUserData = async (req, res) => {
+  const user = await User.findOne({ user: req.user.id });
+  res.json(user);
 };

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+//original separate schema for expenses, not being used.
 const ExpenseSchema = new mongoose.Schema({
   category: {
     type: String,

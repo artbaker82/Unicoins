@@ -1,7 +1,25 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const categorySchema = new mongoose.Schema({ type: String });
+const categorySchema = new mongoose.Schema({ name: { type: String } });
+const expenseSchema = new mongoose.Schema({
+  category: {
+    type: String,
+    required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+    default: Date.now,
+  },
+  description: {
+    type: String,
+  },
+});
 
 const UserSchema = new mongoose.Schema(
   {
@@ -18,13 +36,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    expenses: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "users",
-      },
-    ],
-    categories: [],
+    //expenses: [{ categorySchema: [expenseSchema] }],
+    expenses: [expenseSchema],
+
+    categories: [categorySchema],
   },
   {
     timestamps: true,

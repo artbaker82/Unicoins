@@ -56,9 +56,16 @@ export const register = async (req, res) => {
 
 export const createCategory = async (req, res) => {
   const category = req.body;
-  console.log(category);
+
   try {
-    const user = await User.findOne({ user: req.user.id });
+    const user = await User.findOne({ user: req.user.id }).select("-password");
+
+    //check if category exists
+    const getCategoryNames = user.categories.map((category) => category.name);
+    if (getCategoryNames.includes(req.body.name)) {
+      return res.json({ msg: "Category already exists" });
+    }
+
     user.categories.push(category);
     await user.save();
     res.json(user);
@@ -71,22 +78,34 @@ export const createCategory = async (req, res) => {
 //enter a new expense
 export const createExpense = async (req, res) => {
   try {
-    const newExpense = new Expense({
-      category: req.body.category,
-      amount: req.body.amount,
-      user: req.user.id,
-      description: req.body.description,
-    });
+    const user = await User.findOne({ user: req.user.id }).select("-password");
 
-    const expense = await newExpense.save();
-    res.json(expense);
+    if (!user) {
+      return res.status(400).json({ msg: "No user found" });
+    }
+
+    //destruture request body
+    const { category } = req.body;
+
+    //get all name values from user.category because user.categories contains objects with an id also
+    const getCategoryNames = user.categories.map((category) => category.name);
+
+    //check if category exists
+    if (!getCategoryNames.includes(category)) {
+      return res.json({ msg: "Category does not exist, please create it." });
+    }
+    const expense = req.body;
+    user.expenses.push(expense);
+    await user.save();
+
+    res.json(user);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).send("Server error");
   }
 };
 
-//get expenses by user
+//get expenses by user, expense Schema no longer being used
 export const getUserExpenses = async (req, res) => {
   try {
     //query database by userId (available in req.user.id from auth middleware)

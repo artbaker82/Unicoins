@@ -4,7 +4,7 @@
 
 //get user data with expenses populated
 //delete expenses
-//delete categories
+//delete category by id
 
 import express from "express";
 import { connectDB } from "./config/db.js";

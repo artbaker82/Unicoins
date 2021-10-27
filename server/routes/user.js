@@ -14,7 +14,7 @@ const { check } = pkg;
 
 router.post("/register", register);
 router.put("/category", auth, createCategory);
-router.post("/expense", auth, createExpense);
+router.put("/expense", auth, createExpense);
 router.get("/expense", auth, getUserExpenses);
 router.get("/", auth, getUserData);
 

@@ -58,8 +58,7 @@ export const createCategory = async (req, res) => {
   const category = req.body;
 
   try {
-    const user = await User.findOne({ user: req.user.id }).select("-password");
-
+    const user = await User.findById(req.user.id).select("-password");
     //check if category exists
     const getCategoryNames = user.categories.map((category) => category.name);
     if (getCategoryNames.includes(req.body.name)) {
@@ -75,10 +74,40 @@ export const createCategory = async (req, res) => {
   }
 };
 
+//Delete expense category by id
+export const deleteCategory = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    const id = req.params.id;
+    const categories = user.categories.filter((category) => category.id !== id);
+    user.categories = categories;
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
+//Delete expense by id
+export const deleteExpense = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    const id = req.params.id;
+    const expenses = user.expenses.filter((category) => category.id !== id);
+    user.expenses = expenses;
+    await user.save();
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
 //enter a new expense
 export const createExpense = async (req, res) => {
   try {
-    const user = await User.findOne({ user: req.user.id }).select("-password");
+    const user = await User.findById(req.user.id).select("-password");
 
     if (!user) {
       return res.status(400).json({ msg: "No user found" });
@@ -118,6 +147,12 @@ export const getUserExpenses = async (req, res) => {
 };
 
 export const getUserData = async (req, res) => {
-  const user = await User.findOne({ user: req.user.id });
-  res.json(user);
+  console.log(req.user.id);
+  try {
+    const user = await User.findById(req.user.id);
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    err.status(500).send("Server Error");
+  }
 };

@@ -1,15 +1,18 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const categorySchema = new mongoose.Schema({ name: { type: String } });
+const categorySchema = new mongoose.Schema({
+  name: { type: String, required: [true, "Must provide name"] },
+});
 const expenseSchema = new mongoose.Schema({
   category: {
     type: String,
-    required: true,
+    required: [true, "Must provide category"],
+    trim: true,
   },
   amount: {
     type: Number,
-    required: true,
+    required: [true, "Must provide an ammount"],
   },
   date: {
     type: String,

@@ -14,12 +14,19 @@ import { auth } from "../middleware/auth.js";
 
 const { check } = pkg;
 
-router.post("/register", register);
+router.post(
+  "/register",
+  [
+    check("name", "Name is required").not().isEmpty(),
+    check("email", "Please enter a valid email").isEmail(),
+    check("password", "Please enter a password with 6 or more characters").isLength({ min: 6 }),
+  ],
+  register
+);
 router.put("/category", auth, createCategory);
 router.delete("/category/:id", auth, deleteCategory);
-router.put("/expense", auth, createExpense);
 router.delete("/expense/:id", auth, deleteExpense);
-router.get("/expense", auth, getUserExpenses);
+router.route("/expense").get(auth, getUserExpenses).put(auth, createExpense);
 router.get("/", auth, getUserData);
 
 export default router;

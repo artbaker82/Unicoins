@@ -48,9 +48,9 @@ export const register = async (req, res) => {
 
       res.json({ token });
     });
-  } catch (error) {
+  } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(501).json({ msg: err });
   }
 };
 
@@ -118,28 +118,27 @@ export const createExpense = async (req, res) => {
 
     //get all name values from user.category because user.categories contains objects with an id also
     const getCategoryNames = user.categories.map((category) => category.name);
-
     //check if category exists
     if (!getCategoryNames.includes(category)) {
       return res.json({ msg: "Category does not exist, please create it." });
     }
+    //create category
     const expense = req.body;
     user.expenses.push(expense);
     await user.save();
-
     res.json(user);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(501).json({ msg: err });
   }
 };
 
 //get expenses by user, expense Schema no longer being used
 export const getUserExpenses = async (req, res) => {
   try {
-    //query database by userId (available in req.user.id from auth middleware)
-    const expenses = await Expense.find({ user: req.user.id });
-    res.json(expenses);
+    const user = await User.findById(req.user.id);
+    const expenses = user.expenses;
+    res.json({ expenses });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -147,7 +146,6 @@ export const getUserExpenses = async (req, res) => {
 };
 
 export const getUserData = async (req, res) => {
-  console.log(req.user.id);
   try {
     const user = await User.findById(req.user.id);
     res.json(user);

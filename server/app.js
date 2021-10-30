@@ -2,9 +2,7 @@
 
 //set up express validator errors in all endpoints
 
-//get user data with expenses populated
-//delete expenses
-//delete category by id
+//what should happen to expenses of a specific category when that category is deleted?
 
 import express from "express";
 import { connectDB } from "./config/db.js";
@@ -23,8 +21,8 @@ app.use(express.text());
 
 app.get("/", (req, res) => res.send("API Running"));
 
-app.use("/user", userRouter);
-app.use("/auth", authRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/auth", authRouter);
 
 const PORT = process.env.PORT || 5000;
 

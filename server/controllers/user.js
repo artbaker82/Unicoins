@@ -120,7 +120,7 @@ export const createExpense = async (req, res) => {
     const getCategoryNames = user.categories.map((category) => category.name);
     //check if category exists
     if (!getCategoryNames.includes(category)) {
-      return res.json({ msg: "Category does not exist, please create it." });
+      return res.status(400).json({ msg: "Category does not exist, please create it." });
     }
     //create category
     const expense = req.body;

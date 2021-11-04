@@ -1,7 +1,7 @@
 //todo
 
 //set up express validator errors in all endpoints
-
+//password confirmation frontend?
 //what should happen to expenses of a specific category when that category is deleted?
 
 import express from "express";

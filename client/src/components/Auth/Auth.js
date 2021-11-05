@@ -16,11 +16,14 @@ const Auth = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        dispatch(login(formData, history))
+        /*
         if (isSignUp) {
             dispatch(signup(formData, history))
         } else {
             dispatch(signin(formData, history))
         }
+        */
     }
 
     const handleChange = (e) => {

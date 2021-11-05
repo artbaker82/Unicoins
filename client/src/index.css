@@ -3,4 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.register-item {
+  @apply my-4 p-2 w-full rounded lg:w-2/3;
+}
 
+.dash-card {
+  @apply bg-white
+    w-48
+    h-48
+    sm:w-72 sm:h-72
+    justify-self-center
+    text-center
+    rounded
+    filter
+    drop-shadow;
+}

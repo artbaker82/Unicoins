@@ -1,7 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import Register from "./auth/Register";
+import { useSelector } from "react-redux";
 const Landing = () => {
   return (
     <section className='bg-unicorn h-screen bg-no-repeat bg-cover bg-center'>

@@ -5,11 +5,14 @@
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
     "cra-template": "1.1.2",
+    "jsonwebtoken": "^8.5.1",
     "postcss-cli": "^9.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
+    "react-router": "^6.0.0",
     "react-router-dom": "^6.0.0",
     "react-scripts": "4.0.3",
     "redux": "^4.1.2"

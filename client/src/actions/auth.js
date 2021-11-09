@@ -1,6 +1,8 @@
 import axios from "axios";
 //import alert action
-import { REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
+import { REGISTER_SUCCESS, REGISTER_FAIL, AUTHENTICATE_USER } from "./types";
+import setAuthToken from '../utils/setAuthToken'
+
 
 export const register =
   ({ firstName, lastName, email, password }) =>
@@ -28,3 +30,32 @@ export const register =
       // dispatch register fail action
     }
   };
+
+  export const authenticateUser = () => async dispatch => {
+    //   const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
+    if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+    
+
+    try {
+        const res = await axios.get("http://localhost:5000/api/v1/auth/getAuth");
+        if (res.data) {
+        dispatch({
+            type: AUTHENTICATE_USER,
+            payload: res.data
+        })
+
+        } else {
+            //AUTHENTICATE_FAILED
+        }
+    } catch (err) {
+        const errors = err.response.data.errors;
+      console.log(errors);
+        
+    }
+  }

@@ -18,3 +18,7 @@
     filter
     drop-shadow;
 }
+
+.alert {
+  @apply absolute bottom-7 right-0 z-10;
+}

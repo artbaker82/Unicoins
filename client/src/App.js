@@ -10,19 +10,23 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
+import Alert from "./components/layout/Alert";
 import PrivateRoute from "./components/layout/routing/PrivateRoute";
 function App() {
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Routes>
-            <Route exact path='/' element={<Landing />} />
-            <Route exact path='/register' element={<Register />} />
-            <Route exact path='/login' element={<Login />} />
-            <Route exact path='/dashboard' element={<Dashboard />} />
-            {/* <PrivateRoute exact path='/dashboard' component={Dashboard} /> */}
-          </Routes>
+          <section className='relative'>
+            <Alert />
+            <Routes>
+              <Route exact path='/' element={<Landing />} />
+              <Route exact path='/register' element={<Register />} />
+              <Route exact path='/login' element={<Login />} />
+              <Route exact path='/dashboard' element={<Dashboard />} />
+              {/* <PrivateRoute exact path='/dashboard' component={Dashboard} /> */}
+            </Routes>
+          </section>
         </Fragment>
       </Router>
     </Provider>

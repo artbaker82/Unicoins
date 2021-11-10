@@ -1,5 +1,5 @@
 import axios from "axios";
-//import alert action
+import { setAlert } from "./alert";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -31,6 +31,9 @@ export const login =
     } catch (err) {
       const errors = err.response.data.errors;
       console.log(errors);
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      }
     }
   };
 

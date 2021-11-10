@@ -7,9 +7,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import Landing from "./components/layout/Landing";
-import Register from "./components/layout/auth/Register";
-import Login from "./components/layout/auth/Login";
-import Dashboard from "./components/layout/dashboard/Dashboard";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/layout/routing/PrivateRoute";
 function App() {
   return (

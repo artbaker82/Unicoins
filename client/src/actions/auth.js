@@ -6,6 +6,8 @@ import {
   AUTHENTICATE_USER,
   LOGIN_FAIL,
   LOGIN_SUCCESS,
+  LOGOUT,
+  AUTHENTICATE_FAILED,
 } from "./types";
 
 import setAuthToken from "../utils/setAuthToken";
@@ -36,6 +38,12 @@ export const login =
       }
     }
   };
+
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
+};
 
 export const register =
   ({ firstName, lastName, email, password }) =>
@@ -80,11 +88,13 @@ export const authenticateUser = () => async (dispatch) => {
         type: AUTHENTICATE_USER,
         payload: res.data,
       });
-    } else {
-      //AUTHENTICATE_FAILED
     }
   } catch (err) {
+    console.log("no res");
     const errors = err.response.data.errors;
     console.log(errors);
+    dispatch({
+      type: AUTHENTICATE_FAILED,
+    });
   }
 };

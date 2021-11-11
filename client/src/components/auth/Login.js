@@ -24,7 +24,7 @@ const Register = () => {
 
   //upon successful login, user will be redirected to dashboard
   const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
-  console.log(isAuthenticated);
+
   if (isAuthenticated) {
     navigate("/dashboard");
   }

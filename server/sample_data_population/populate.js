@@ -53,11 +53,9 @@ export const generateExpenses = (num) => {
     expenses[i].amount = Math.floor(Math.random() * 100);
     expenses[i].description = "sample data";
   }
-
-  console.log(expenses);
+  return expenses;
+  // console.log(expenses);
 };
-
-// generateExpenses(500);
 
 //put this in the database
 
@@ -80,11 +78,22 @@ const start = async () => {
 
     //passing in the array of products
     //get user
+    let user = await User.find({ email: "sampledata@gmail.com" });
+    categories.forEach((item) => {
+      user[0].categories.push({ name: item });
+    });
+    const expensesToAdd = generateExpenses(50);
+    expensesToAdd.forEach((item) => {
+      user[0].expenses.push(item);
+    });
+    // console.log(user[0]);
+
+    await user[0].save();
     //put sample data in expenses
     //dont forget to input categories data too
     //quit the process when it is successful
     // process.exit(0);
-    console.log("success");
+    // console.log("success");
   } catch (error) {
     console.log(error);
     process.exit(1);

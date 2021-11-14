@@ -3,8 +3,10 @@
 //set up express validator errors in all endpoints
 //password confirmation frontend?
 //what should happen to expenses of a specific category when that category is deleted?
+//Create random expenses (algorithm to generate random data up to a year in the past)
 
 import express from "express";
+import cors from "cors";
 import { connectDB } from "./config/db.js";
 import bodyParser from "body-parser";
 import userRouter from "./routes/user.js";
@@ -13,6 +15,7 @@ import authRouter from "./routes/auth.js";
 const app = express();
 //connect to database
 connectDB();
+app.use(cors());
 
 //init middleware
 app.use(express.json({ extended: false }));

@@ -82,7 +82,7 @@ const start = async () => {
     categories.forEach((item) => {
       user[0].categories.push({ name: item });
     });
-    const expensesToAdd = generateExpenses(50);
+    const expensesToAdd = generateExpenses();
     expensesToAdd.forEach((item) => {
       user[0].expenses.push(item);
     });

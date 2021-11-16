@@ -27,6 +27,7 @@ router.put("/category", auth, createCategory);
 router.delete("/category/:id", auth, deleteCategory);
 router.delete("/expense/:id", auth, deleteExpense);
 router.route("/expense").get(auth, getUserExpenses).put(auth, createExpense);
+
 router.get("/", auth, getUserData);
 
 export default router;

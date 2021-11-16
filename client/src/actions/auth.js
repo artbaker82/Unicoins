@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
+import { getData } from "./getData";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -30,6 +31,8 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      //dispatch action to get data, default should be one week and all categories
+      dispatch(getData("1W", "all"));
     } catch (err) {
       const errors = err.response.data.errors;
       console.log(errors);

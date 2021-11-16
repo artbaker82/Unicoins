@@ -137,8 +137,11 @@ export const createExpense = async (req, res) => {
 export const getUserExpenses = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    const expenses = user.expenses;
-    res.json({ expenses });
+    const expenseData = {
+      expenses: user.expenses,
+      categories: user.categories,
+    };
+    res.json(expenseData);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

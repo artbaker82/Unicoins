@@ -72,9 +72,7 @@ const connectDB = async (db) => {
 
 const start = async () => {
   try {
-    await connectDB(
-      "mongodb+srv://Arthur:WGWGW9pMrzyHNTc3@cluster0.mfbzj.mongodb.net/unicoinsdb?retryWrites=true&w=majority"
-    );
+    await connectDB();
 
     //passing in the array of products
     //get user

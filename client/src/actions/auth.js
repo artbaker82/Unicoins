@@ -9,6 +9,7 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   AUTHENTICATE_FAILED,
+  CLEAR_DATA
 } from "./types";
 
 import setAuthToken from "../utils/setAuthToken";
@@ -31,8 +32,7 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      //dispatch action to get data, default should be one week and all categories
-      dispatch(getData("1W", "all"));
+    
     } catch (err) {
       const errors = err.response.data.errors;
       console.log(errors);
@@ -45,6 +45,9 @@ export const login =
 export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
+  });
+  dispatch({
+    type: CLEAR_DATA,
   });
 };
 

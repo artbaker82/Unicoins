@@ -133,8 +133,19 @@ export const createExpense = async (req, res) => {
   }
 };
 
-//get expenses by user, expense Schema no longer being used
+
 export const getUserExpenses = async (req, res) => {
+
+  const {sortDate, category} = req.query
+  
+  const queryObject = {}
+
+  if (sortDate) {
+    queryObject.sortDate = sortDate
+  }
+
+  
+
   try {
     const user = await User.findById(req.user.id);
     const expenseData = {
@@ -149,6 +160,13 @@ export const getUserExpenses = async (req, res) => {
 };
 
 export const getUserData = async (req, res) => {
+  //destructure query params
+  // const {sortDate, category} = req.query
+  // const queryObject = {}
+  // if (sortDate) {
+  //   queryObject.sortDate = sortDate
+  // }
+  // console.log(queryObject)
   try {
     const user = await User.findById(req.user.id);
     res.json(user);
@@ -157,3 +175,11 @@ export const getUserData = async (req, res) => {
     err.status(500).send("Server Error");
   }
 };
+
+//returning sorted data
+//possible sort parameters
+//date, category, amount
+//what is the default for each?
+
+//date options are 1w, 1m, 3m, 6m, 1y, all
+

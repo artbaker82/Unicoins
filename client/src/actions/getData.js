@@ -7,7 +7,12 @@ import setAuthToken from "../utils/setAuthToken";
 export const getData =
   ({ time, category }) =>
   async (dispatch) => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
     try {
+      //format query parameters to be passed to API
       //time and category parameters will be passed as request params to communicate with api how to sort the data
       const res = await axios.get("http://localhost:5000/api/v1/user/expense");
       dispatch({

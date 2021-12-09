@@ -1,4 +1,4 @@
-import { LOAD_DATA } from "../actions/types";
+import { LOAD_DATA, CLEAR_DATA } from "../actions/types";
 
 const initialState = {};
 
@@ -8,6 +8,10 @@ const userDataReducer = (state = initialState, action) => {
   switch (type) {
     case LOAD_DATA: {
       return payload;
+    }
+
+    case CLEAR_DATA: {
+      return initialState;
     }
 
     default: {

@@ -12,23 +12,18 @@ const Dashboard = () => {
     isAuthenticated: auth,
     loading,
     name,
-    expenses,
+    // expenses,
   } = useSelector((state) => state.authReducer);
+
+  const { categories, expenses } = useSelector((state) => state.userDataReducer);
+
   useEffect(() => {
-    dispatch(getData("1W", "all"));
+    //default query parameters are 1w and all
+    dispatch(getData("1w", "all"));
     // return () => {
     //   cleanup
     // }
   }, []);
-
-  //sorts expenses by date, where should this be done?
-  // const sortByDate = expenses.sort(
-  //   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  // );
-  // // const getMilliseconds = expenses.map((expense) => {
-  // //   return new Date(expense.date).getTime();
-  // // });
-  // console.log(sortByDate);
 
   return (
     <Fragment>

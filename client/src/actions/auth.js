@@ -9,7 +9,7 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   AUTHENTICATE_FAILED,
-  CLEAR_DATA
+  CLEAR_DATA,
 } from "./types";
 
 import setAuthToken from "../utils/setAuthToken";
@@ -32,7 +32,6 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-    
     } catch (err) {
       const errors = err.response.data.errors;
       console.log(errors);

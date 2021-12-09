@@ -15,20 +15,15 @@ const Dashboard = () => {
     // expenses,
   } = useSelector((state) => state.authReducer);
 
-  const {
-    categories, 
-    expenses
-  } = useSelector((state) => state.userDataReducer)
+  const { categories, expenses } = useSelector((state) => state.userDataReducer);
 
   useEffect(() => {
-    
     //default query parameters are 1w and all
     dispatch(getData("1w", "all"));
     // return () => {
     //   cleanup
     // }
-  },[]);
-  
+  }, []);
 
   return (
     <Fragment>

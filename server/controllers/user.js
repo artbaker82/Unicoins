@@ -133,18 +133,15 @@ export const createExpense = async (req, res) => {
   }
 };
 
-
 export const getUserExpenses = async (req, res) => {
+  const { sortDate, category } = req.query;
 
-  const {sortDate, category} = req.query
-  
-  const queryObject = {}
+  console.log(req.user.id);
+  const queryObject = {};
 
   if (sortDate) {
-    queryObject.sortDate = sortDate
+    queryObject.sortDate = sortDate;
   }
-
-  
 
   try {
     const user = await User.findById(req.user.id);
@@ -182,4 +179,3 @@ export const getUserData = async (req, res) => {
 //what is the default for each?
 
 //date options are 1w, 1m, 3m, 6m, 1y, all
-

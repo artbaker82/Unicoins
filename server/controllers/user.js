@@ -136,12 +136,7 @@ export const createExpense = async (req, res) => {
 export const getUserExpenses = async (req, res) => {
   const { sortDate, category } = req.query;
 
-  console.log(req.user.id);
-  const queryObject = {};
-
-  if (sortDate) {
-    queryObject.sortDate = sortDate;
-  }
+  console.log(req.query);
 
   try {
     const user = await User.findById(req.user.id);
@@ -149,6 +144,31 @@ export const getUserExpenses = async (req, res) => {
       expenses: user.expenses,
       categories: user.categories,
     };
+    //sort the data by date
+    let sortedExpensesByDate = expenseData.expenses.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+
+    //sort based on sortDate query param
+    //1 week in the past
+
+    const millisecondsIn7Days = 604800 * 1000;
+    console.log(new Date(sortedExpensesByDate[0].date).getTime());
+    //get range of milliseconds
+    const dateRangeOneWeek = Date.now() - millisecondsIn7Days;
+    console.log("now:", Date.now(), "7 days: ", dateRangeOneWeek);
+
+    //return expenses that fall within this range
+
+    const sevenDayExpenses = sortedExpensesByDate.filter((expense) => {
+      const date = new Date(expense.date).getTime();
+      if (date > dateRangeOneWeek) {
+        return expense;
+      }
+    });
+
+    console.log(sevenDayExpenses);
+
     res.json(expenseData);
   } catch (err) {
     console.error(err.message);
@@ -157,13 +177,6 @@ export const getUserExpenses = async (req, res) => {
 };
 
 export const getUserData = async (req, res) => {
-  //destructure query params
-  // const {sortDate, category} = req.query
-  // const queryObject = {}
-  // if (sortDate) {
-  //   queryObject.sortDate = sortDate
-  // }
-  // console.log(queryObject)
   try {
     const user = await User.findById(req.user.id);
     res.json(user);

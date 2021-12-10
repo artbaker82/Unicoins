@@ -73,6 +73,7 @@ const connectDB = async (db) => {
 const start = async () => {
   try {
     await connectDB();
+    //input mongo uri here
 
     //passing in the array of products
     //get user
@@ -80,7 +81,7 @@ const start = async () => {
     categories.forEach((item) => {
       user[0].categories.push({ name: item });
     });
-    const expensesToAdd = generateExpenses();
+    const expensesToAdd = generateExpenses(500);
     expensesToAdd.forEach((item) => {
       user[0].expenses.push(item);
     });

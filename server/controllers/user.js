@@ -4,6 +4,7 @@ import User from "../models/User.js";
 import Expense from "../models/Expense.js";
 import config from "config";
 import pkg from "express-validator";
+import { getSortedDataByDate } from "../utils/sortData.js";
 
 const { validationResult } = pkg;
 //register a new user
@@ -149,25 +150,10 @@ export const getUserExpenses = async (req, res) => {
       (a, b) => new Date(b.date) - new Date(a.date)
     );
 
-    //sort based on sortDate query param
-    //1 week in the past
+    const sortedExpenses = getSortedDataByDate(sortedExpensesByDate, "1w");
 
-    const millisecondsIn7Days = 604800 * 1000;
-    console.log(new Date(sortedExpensesByDate[0].date).getTime());
-    //get range of milliseconds
-    const dateRangeOneWeek = Date.now() - millisecondsIn7Days;
-    console.log("now:", Date.now(), "7 days: ", dateRangeOneWeek);
-
-    //return expenses that fall within this range
-
-    const sevenDayExpenses = sortedExpensesByDate.filter((expense) => {
-      const date = new Date(expense.date).getTime();
-      if (date > dateRangeOneWeek) {
-        return expense;
-      }
-    });
-
-    console.log(sevenDayExpenses);
+    console.log(sortedExpenses);
+    expenseData.expenses = sortedExpenses;
 
     res.json(expenseData);
   } catch (err) {
